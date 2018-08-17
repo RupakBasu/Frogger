@@ -10,9 +10,18 @@ class Enemy {
   render(){
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 75);
   }
+  enemyReset(){
+    if (this.x === 4) {
+      this.x = -1;
+    }
+  }
+
   update(dt){
     this.x += this.speed * dt;
+    // updateEntities(dt); this is on the engine.js and it helps to control the enemies movement.
+    // enemyReset();
   }
+
 }
 const enemy = new Enemy();
 
@@ -23,6 +32,7 @@ class EnemyOne extends Enemy {
     super();
     this.x = 0;
     this.y = 3;
+    this.speed = .5;
   }
   // Draw the enemy on the screen, required method for game
   render(){
@@ -53,6 +63,7 @@ class EnemyThree extends Enemy {
     super();
     this.x = 0;
     this.y = 1;
+    this.speed = .7;
   }
   // Draw the enemy on the screen, required method for game
   render(){
@@ -89,52 +100,39 @@ class Player {
   }
   // Draw the player on the screen, required method for game
   render(){
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 83);
+    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 80);
   }
   // Restrict Player from going off the canvas
   update(){
     this.x >= 4;
     this.x <= 0;
   }
-  // moveLeft(input){
-  //   if(0 >= this.x <= 5){
-  //     this.x = this.x - 1;
-  //   }
-  // }
-  // moveright(input){
-  //   if(0 >= this.x <= 5){
-  //     this.x = this.x + 1;
-  //   }
-  // }
-  // moveUp(input){
-  //   if(0 >= this.y <= 6){
-  //     this.y = this.y + 1;
-  //   }
-  // }
-  // moveDown(input){
-  //   if(0 >= this.y <= 6){
-  //     this.y = this.y - 1;
-  //   }
-  // }
+  // the handleInput methods for is as follows
+  // the first if is to indicate which key is pressed the next if makes sure that the Player
+  // doesnt go out of the canvas -- this.x > 0 this makes sure that the player cant go more that 0 left
+  // if that is met then the player is able to move one to the left so subtracting one from the current place.
   handleInput(input){
-    if('left') {
-      if(0 >= this.x <= 5){
+    if(input === 'left') {
+      if(this.x > 0){
         this.x = this.x - 1;
       }
-    } else if('right') {
-      if(0 >= this.x <= 5){
+    } else if(input === 'right') {
+      if(this.x < 4){
         this.x = this.x + 1;
       }
-    } else if('up') {
-      if(0 >= this.y <= 6){
+    } else if(input === 'down') {
+      if(this.y < 5){
         this.y = this.y + 1;
       }
-    } else if('down') {
-      if(0 >= this.y <= 6){
+    } else if(input === 'up'){
+      if(this.y > 0){
         this.y = this.y - 1;
       }
-    } else {
-      console.log ("broken!")
+    }
+  }
+  gameWon(){
+    if(this.y === 1){
+      alert("You Won !")
     }
   }
 }
@@ -154,7 +152,7 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-
+// https://codereview.stackexchange.com/questions/18792/keypress-function-conditional
 
 // This class requires an update(), render() and
 //update for Player class
