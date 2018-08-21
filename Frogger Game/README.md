@@ -5,6 +5,7 @@
 * [Description of Project](#description)
 * [Purpose of Project](#purpose)
 * [Instructions](#instructions)
+* [Run the game locally](#Run)
 * [Resources](#resources)
 * [Additional Information](#additional)
 * [Contributing](#contributing)
@@ -26,6 +27,11 @@ How to play:
 3. If you are hit by an enemy you will automatically start back in the beginning and start over.
 4. Once you reach to the other side you will see a dialogue box which will say you win.
 
+## Run the game locally
+1. Please visit my GitHub which can be accessed - https://github.com/RupakBasu/Frogger
+2. the first step would be to download my game along with all of its files.
+3. Once you have successfully saved the whole project in a designated location on you computer please go ahead and click on the index.html file.
+4. By clicking on the index.html file you will be able to play the frogger game. Please see the above section for Instructions on how to play the game. 
 
 ## Resources
 
